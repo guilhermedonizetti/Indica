@@ -2,7 +2,8 @@
 Classe relacionada ao Login
 """
 
-from flask import redirect, url_for
+from flask_mysqldb import MySQL
+from MySQLdb import cursors
 
 class Login:
 
