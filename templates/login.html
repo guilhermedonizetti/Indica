@@ -4,10 +4,17 @@
     <h1>Hello, world!</h1>
     <p>Faça seu login aqui.</p>
 
+    {% if existe == "S" %}
+        <script>
+            alert("Usuário existe!")
+        </script>
+    {% endif %}
+
     <form method="POST" action="/login">
         <input type="email" name="login" placeholder="e-mail" required>
         <input type="password" name="senha" placeholder="senha" required>
         <input type="submit" value="Ir">
     </form>
 </body>
+
 </html>

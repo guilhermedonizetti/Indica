@@ -2,11 +2,28 @@
 Classe relacionada ao Login
 """
 
-from flask_mysqldb import MySQL
-from MySQLdb import cursors
+from controller.startup import *
 
 class Login:
 
-    def login_usuario(login, senha):
-        print("{} e {}".format(login, senha))
-        return True
+    def login_usuario(dados, conexao):
+        """
+        Método para verificar existencia do registro do usuario
+        """
+
+        login = dados['login']
+        senha = dados['senha']
+
+        if factory.elementos_nao_vazios([login, senha]) == False:
+            return False
+        
+        SQL = "SELECT * FROM usuarios WHERE email = '{}' AND senha = '{}'".format(login, senha)
+        stmt = conexao.execute(SQL)
+
+        existe = "N"
+        if stmt > 0:
+            existe = "S"
+        
+        return existe
+
+
