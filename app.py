@@ -1,12 +1,11 @@
 from flask import Flask, render_template, request, redirect, url_for
-from controller import loginController
-from config.connection import Conexao as conexao
+from config import autoload as classes
 
 global app
 app = Flask(__name__)
 
 # Configura e inicia o BD
-conn = conexao.iniciar_banco_dados(app)
+conn = classes.Conexao.iniciar_banco_dados(app)
 print("\n\nCONEXAO: \n{}\n\n".format(conn))
 
 
@@ -26,12 +25,24 @@ def home():
 def login():
     return render_template("login.html")
 
+
 # Redireciona para o Controller de Login
 @app.route("/login", methods=['POST'])
 def login_usuario():
-    login = loginController.Login.login_usuario(request.form, conn)
+    login = classes.Login.login_usuario(request.form, conn)
     return render_template("login.html", existe = login)
 
+# Retorna a pagina de criacao de conta (cadastro de usuario)
+@app.route("/cadastro", methods=['GET'])
+def cadastro():
+    return render_template("cadastro.html")
+
+# Redireciona para o Controller de Cadastro
+@app.route("/cadastro", methods=['POST'])
+def cadastrar():
+    cadastro = classes.Usuario.registrar_novo_usuario(request.form, conn)
+    print("Resposta: {}".format(cadastro))
+    return render_template("cadastro.html")
 
 # Inicia a aplicacao
 if __name__ == '__main__':

@@ -21,7 +21,7 @@ class Conexao:
             mysql = MySQL()
             mysql.init_app(app)
             conn = mysql.connect()
-            conn = conn.cursor()
+            # conn = conn.cursor()
 
             return conn
             

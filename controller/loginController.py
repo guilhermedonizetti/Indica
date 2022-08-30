@@ -11,6 +11,7 @@ class Login:
         Método para verificar existencia do registro do usuario
         """
 
+        conexao = conexao.cursor()
         login = dados['login']
         senha = dados['senha']
 
