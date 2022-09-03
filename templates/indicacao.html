@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+
+    <h1>Indicar</h1>
+
+    <form method="POST" action="/indicar">
+        <select name="proximidade" required>
+            <optgroup>
+                <option>Selecione</option>
+                <option value="1">Estudaram juntos</option>
+                <option value="2">Trabalharam juntos</option>
+                <option value="3">Não tarabalharam juntos, mas sim na mesma empresa</option>
+                <option value="4">Se conhecem fora do ambiente acadêmico e corporativo</option>
+            </optgroup>
+        </select>
+
+        <br>
+        <textarea name="indicacao" maxlength="4000" placeholder="Digite aqui a indicação..." cols="40" required></textarea>
+
+        <input type="submit" value="Enviar">
+    </form>
+
+    <!-- Script -->
+    {% if indicacao == "S" %}
+        <script>
+            alert("Indicação feita :)")
+        </script>
+    {% endif %}
+</body>
+</html>

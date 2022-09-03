@@ -44,6 +44,19 @@ def cadastrar():
     print("Resposta: {}".format(cadastro))
     return render_template("cadastro.html")
 
+
+# Retorna para a pagina de indicao
+@app.route("/indicacao", methods=['GET'])
+def indicacao():
+    return render_template("indicacao.html")
+
+# Redireciona para o Controller de Indicacao
+@app.route("/indicar", methods=['POST'])
+def indicar():
+    indicacao = classes.Indicacao.cadastrar_indicacao(request.form, conn)
+    print("**** {}".format(indicacao))
+    return render_template("indicacao.html", indicacao = indicacao)
+
 # Inicia a aplicacao
 if __name__ == '__main__':
     app.run()
